@@ -1,16 +1,20 @@
-import 'package:api_training/weather_api/weather_provider.dart';
-import 'package:api_training/weather_api/weather_screen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main()
-{
-  runApp(MultiProvider(
+import 'fake_store/home_screen.dart';
+import 'fake_store/product_provider.dart';
+
+void main() {
+  runApp(
+    MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => WeatherProvider()),
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
       ],
-      child: MyApp()));
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,11 +22,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: WeatherScreen(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
   }
 }
-
-
