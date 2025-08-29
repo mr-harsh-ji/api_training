@@ -1,16 +1,14 @@
-
+import 'package:api_training/fake_store_cart/cart_provider.dart';
+import 'package:api_training/fake_store_cart/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'fake_store/home_screen.dart';
-import 'fake_store/product_provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ProductProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()),
       ],
       child: MyApp(),
     ),
