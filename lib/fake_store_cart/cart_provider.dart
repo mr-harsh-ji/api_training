@@ -12,12 +12,12 @@ class CartProvider with ChangeNotifier{
   // var productController= TextEditingController();
   // List<CartModel?> productList=[];
 
-  CartModel? cartModel;
+  List<CartModel>? cartModel;
 
   getCart()async{
     var products =await CartServices.getCartApi();
     if(products != null){
-      cartModel = products as CartModel?;
+      cartModel = products;
       notifyListeners();
     }
   }

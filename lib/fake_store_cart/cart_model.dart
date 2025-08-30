@@ -1,16 +1,16 @@
 class CartModel {
   int? id;
-  String? title;
+  int? userId;
   List<Products>? products;
 
-  CartModel(this.id, this.title, this.products);
+  CartModel(this.id, this.userId, this.products);
 
   static CartModel jsonToModel(Map<String, dynamic> data) {
     List<dynamic> product = data["products"];
     var cartModelList = product
         .map((e) => Products.jsonToModel(e),)
         .toList();
-    return CartModel(data["id"], data["title"], cartModelList);
+    return CartModel(data["id"], data["userId"], cartModelList);
   }
 }
 

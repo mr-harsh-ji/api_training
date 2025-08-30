@@ -14,9 +14,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    var provider = Provider.of<CartProvider?>(context, listen: false);
+    provider?.getCart();
     super.initState();
-    var provider = Provider.of<CartProvider>(context, listen: false);
-    provider.getCart();
+
   }
 
   @override
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // floatingActionButton: FloatingActionButton(onPressed: () {
         //   Navigator.push(context, MaterialPageRoute(builder: (context) => AddProductScreen(),));
         // },child: Icon(Icons.add),),
-        body: Consumer<CartProvider>(
+        body: Consumer<CartProvider?>(
           builder: (context, value, child) {
             // if (value.productList.isEmpty) {
             //   return Text("Cannot Get products");
@@ -49,15 +50,21 @@ class _HomeScreenState extends State<HomeScreen> {
             //       );
             //     },);
             // }
-            return ListTile(
-              title: Text("${value.cartModel?.id}"),
-              subtitle: Column(
-                children: [
-                  Text("${value.cartModel?.title}"),
-                  // Text("${value.cartModel?.products?.quantity}"),
+            return ListView.builder(
+              itemCount: value?.cartModel?.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text("${value?.cartModel?[index].id}"),
+                  subtitle: Column(
+                    children: [
+                      Text("${value?.cartModel?[index].userId}"),
 
-                ],
-              ),
+                      // Text("${value.cartModel?.products?.quantity}"),
+
+                    ],
+                  ),
+                );
+              },
             );
           },
         ),

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'cart_model.dart';
 
 class CartServices {
-  static Future<List<dynamic>?> getCartApi() async {
+  static Future<List<CartModel>?> getCartApi() async {
     var response = await http.get(
       Uri.parse("https://fakestoreapi.com/carts"),
     );
